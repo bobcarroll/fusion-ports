@@ -25,7 +25,6 @@
                                                ZipFileName="$(DISTDIR)\$(P).zip" />
     </Target>
     <Target Name="src_install">
-      <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                          Name="$(L)\WinSCP.lnk"
                                          FilePath="$(ROOT)\$(InstallDir)\winscp.exe" />
