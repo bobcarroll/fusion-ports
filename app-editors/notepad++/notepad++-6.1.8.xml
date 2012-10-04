@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+    <Keyword>~ia64</Keyword>
+  </Keywords>
+  <Sources size="13674373">
+    <File digest="098b065edbe3b0df2258684a703b704a"
+          size="4698070"
+          uri="http://download.tuxfamily.org/notepadplus/6.1.8/npp.6.1.8.bin.zip">$(P).zip</File>
+  </Sources>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Notepad++</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Notepad++</InstallDir>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)\Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
+                                               ExtractPath="$(WORKDIR)" 
+                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <ItemGroup>
+        <Files Include="$(WORKDIR)\unicode\**\*" />
+      </ItemGroup>
+      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(L)\Notepad++.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\notepad++.exe" />
+    </Target>
+  </Project>
+</Port>
