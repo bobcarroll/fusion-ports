@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+    <Keyword>~ia64</Keyword>
+  </Keywords>
+  <Sources size="3763234">
+    <File digest="5167a73fc962eac4b0ef9f7958e8c847"
+          size="1579454"
+          uri="http://downloads.sourceforge.net/project/console/console-devel/2.00/Console-2.00b148-Beta_32bit.zip">$(P).zip</File>
+  </Sources>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Console</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Console</InstallDir>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)\Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
+                                               ExtractPath="$(WORKDIR)" 
+                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <ItemGroup>
+        <Files Include="$(WORKDIR)\Console2\**\*" />
+      </ItemGroup>
+      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                         Name="$(L)\Console2.lnk"
+                                         FilePath="$(ROOT)\$(InstallDir)\console.exe" />
+    </Target>
+  </Project>
+</Port>
