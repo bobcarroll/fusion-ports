@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+    <Keyword>~ia64</Keyword>
+  </Keywords>
+  <Sources size="9518545">
+    <File digest="7bcdf6aac0c419609c1adf89260eb6be"
+          size="3834608"
+          uri="http://downloads.sourceforge.net/project/winscp/WinSCP/5.1/winscp510.zip">$(P).zip</File>
+  </Sources>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\WinSCP</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\WinSCP</InstallDir>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)\Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
+                                               ExtractPath="$(D)\$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(StartMenu)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                         Name="$(L)\WinSCP.lnk"
+                                         FilePath="$(ROOT)\$(InstallDir)\winscp.exe" />
+    </Target>
+  </Project>
+</Port>

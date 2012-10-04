@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Free SFTP, SCP and FTP client for Windows.</Description>
+  <Homepage>http://winscp.net/</Homepage>
+  <License>GPLv3</License>
+</Package>
