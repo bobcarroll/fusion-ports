@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Find out what files, registry keys and other objects processes have open, which DLLs they have loaded, and more.</Description>
+  <Homepage>http://technet.microsoft.com/en-us/sysinternals/bb896653</Homepage>
+  <License>SYSINTERNALS SOFTWARE LICENSE</License>
+</Package>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Advanced monitoring tool for Windows that shows real-time file system, Registry and process/thread activity.</Description>
+  <Homepage>http://technet.microsoft.com/en-us/sysinternals/bb896645</Homepage>
+  <License>SYSINTERNALS SOFTWARE LICENSE</License>
+</Package>

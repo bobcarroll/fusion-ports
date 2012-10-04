@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Package management and distribution system</Description>
+  <Homepage>http://github.com/rcarz/fusion</Homepage>
+  <License>GPLv2</License>
+</Package>

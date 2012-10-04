@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+    <Keyword>~ia64</Keyword>
+  </Keywords>
+  <Sources size="2770465">
+    <File digest="2a4a3c542f2c857983a5253042829552"
+          size="1144963"
+          uri="http://download.sysinternals.com/files/ProcessExplorer.zip">$(P).zip</File>
+  </Sources>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\SysInternals\ProcessExplorer</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\SysInternals\ProcessExplorer</InstallDir>
+      <StartMenu>$(L)\SysInternals</StartMenu>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)\Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
+                                               ExtractPath="$(D)\$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(StartMenu)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(StartMenu)\Process Explorer.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\procexp.exe" />
+    </Target>
+  </Project>
+</Port>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+    <Keyword>~ia64</Keyword>
+  </Keywords>
+  <Sources size="307200">
+    <File digest="2d25e940211a53331dd23901fdb92b33"
+          size="307200"
+          uri="http://the.earth.li/~sgtatham/putty/latest/x86/puttytel.exe">$(P).exe</File>
+  </Sources>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\PuTTY</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\PuTTY</InstallDir>
+      <StartMenu>$(L)\PuTTY</StartMenu>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)\Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_install">
+      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <Fusion.Tasks.FileSystem.CopyFile SourceFile="$(DISTDIR)\$(P).exe"
+                                        TargetFile="$(D)\$(InstallDir)\puttytel.exe"
+                                        Overwrite="true" /> 
+      <MakeDir Directories="$(StartMenu)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                         Name="$(StartMenu)\PuTTYtel.lnk"
+                                         FilePath="$(ROOT)\$(InstallDir)\puttytel.exe" />
+    </Target>
+  </Project>
+</Port>

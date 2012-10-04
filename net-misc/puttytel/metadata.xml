@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>PuTTY telnet client</Description>
+  <Homepage>http://www.chiark.greenend.org.uk/~sgtatham/putty/</Homepage>
+  <License>MIT license</License>
+</Package>
