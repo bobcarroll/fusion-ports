@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>~x86</Keyword>
+    <Keyword>~x86_64</Keyword>
+  </Keywords>
+  <Sources size="6875228">
+    <File digest="51b2342034df24cb27d183cf7cf813d5"
+          size="3145828"
+          uri="https://github.com/downloads/rcarz/fusion/fusion-2.0-r2.zip">$(P).zip</File>
+  </Sources>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Fusion</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Fusion</InstallDir>
+      <FusionHome>$(DATADIR)\Fusion</FusionHome>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)\Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
+                                               ExtractPath="$(WORKDIR)" 
+                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+    </Target>
+    <Target Name="src_install">
+      <ItemGroup>
+        <BinFiles Include="$(WORKDIR)\bin\**\*" />
+      </ItemGroup>
+      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
+      <Fusion.Tasks.FileSystem.SetMandatoryLabel Path="$(D)\$(InstallDir)\xtmake.exe"
+                                                 Policy="NoWriteUp"
+                                                 Label="LowIntegrity" />
+    </Target>
+    <Target Name="pkg_postinst">
+      <MakeDir Directories="$(FusionHome)" />
+      <Fusion.Tasks.FileSystem.BreakInheritance Path="$(FusionHome)" Preserve="false" />
+      <ItemGroup>
+        <AdminUsers Include="SYSTEM" />
+        <AdminUsers Include="Administrators" />
+        <AdminUsers Include="CREATOR OWNER" />
+      </ItemGroup>
+      <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="AddSecurity"
+                                               AccessType="Allow"
+                                               Path="$(FusionHome)"
+                                               Users="@(AdminUsers)"
+                                               Permission="FullControl" />
+      <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="AddSecurity"
+                                               AccessType="Allow"
+                                               Path="$(FusionHome)"
+                                               Users="Users"
+                                               Permission="ReadAndExecute" />
+      <MakeDir Directories="$(FusionHome)\distfiles" />
+      <MakeDir Directories="$(FusionHome)\etc" />
+      <MakeDir Directories="$(FusionHome)\global" />
+      <MakeDir Directories="$(FusionHome)\logs" />
+      <Fusion.Tasks.FileSystem.CopyFile SourceFile="$(WORKDIR)\fusion.s3db"
+                                        TargetFile="$(FusionHome)\etc\fusion.s3db"
+                                        Overwrite="false" />
+      <Fusion.Tasks.FileSystem.CopyFile SourceFile="$(WORKDIR)\config.xml"
+                                        TargetFile="$(FusionHome)\etc\config.xml"
+                                        Overwrite="false" />
+      <ItemGroup>
+        <EtcFiles Include="$(FusionHome)\etc\package.keywords" />
+        <EtcFiles Include="$(FusionHome)\etc\package.unmask" />
+      </ItemGroup>
+      <Touch Files="@(EtcFiles)" AlwaysCreate="true" />
+      <MSBuild.ExtensionPack.Computer.EnvironmentVariable TaskAction="Get"
+                                                          Variable="PATH"
+                                                          Target="Machine">
+        <Output PropertyName="MachinePath" TaskParameter="Value" />
+      </MSBuild.ExtensionPack.Computer.EnvironmentVariable>
+      <CombinePath BasePath="$(ROOT)" Paths="$(InstallDir)">
+        <Output PropertyName="FinalBinPath" TaskParameter="CombinedPaths" />
+      </CombinePath>
+      <MSBuild.ExtensionPack.Framework.TextString TaskAction="Compare"
+                                                  Comparison="Contains"
+                                                  String1="$(MachinePath)"
+                                                  String2="$(FinalBinPath)"
+                                                  IgnoreCase="true">
+        <Output PropertyName="SkipPath" TaskParameter="Result" />
+      </MSBuild.ExtensionPack.Framework.TextString>
+      <PropertyGroup>
+        <NewMachinePath Condition="$(MachinePath) == ''">$(FinalBinPath)</NewMachinePath>
+        <NewMachinePath Condition="$(MachinePath) != ''">$(FinalBinPath);$(MachinePath)</NewMachinePath>
+      </PropertyGroup>
+      <MSBuild.ExtensionPack.Computer.EnvironmentVariable TaskAction="Set"
+                                                          Variable="PATH"
+                                                          Value="$(NewMachinePath)"
+                                                          Target="Machine"
+                                                          Condition="!$(SkipPath)" />
+    </Target>
+  </Project>
+</Port>
