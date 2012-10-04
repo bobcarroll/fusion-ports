@@ -4,9 +4,9 @@
     <Keyword>~x86</Keyword>
     <Keyword>~x86_64</Keyword>
   </Keywords>
-  <Sources size="6875228">
-    <File digest="51b2342034df24cb27d183cf7cf813d5"
-          size="3145828"
+  <Sources size="6892754">
+    <File digest="91cfd6a2b1e8fdcbc1a9e5f0c664529d"
+          size="3145845"
           uri="https://github.com/downloads/rcarz/fusion/fusion-2.0-r2.zip">$(P).zip</File>
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -29,11 +29,14 @@
       </ItemGroup>
       <MakeDir Directories="$(D)\$(InstallDir)" />
       <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
-      <Fusion.Tasks.FileSystem.SetMandatoryLabel Path="$(D)\$(InstallDir)\xtmake.exe"
-                                                 Policy="NoWriteUp"
-                                                 Label="LowIntegrity" />
     </Target>
     <Target Name="pkg_postinst">
+      <CombinePath BasePath="$(ROOT)" Paths="$(InstallDir)">
+        <Output PropertyName="FinalBinPath" TaskParameter="CombinedPaths" />
+      </CombinePath>
+      <Fusion.Tasks.FileSystem.SetMandatoryLabel Path="$(FinalBinPath)\xtmake.exe"
+                                           Policy="NoWriteUp"
+                                           Label="LowIntegrity" />
       <MakeDir Directories="$(FusionHome)" />
       <Fusion.Tasks.FileSystem.BreakInheritance Path="$(FusionHome)" Preserve="false" />
       <ItemGroup>
@@ -71,9 +74,6 @@
                                                           Target="Machine">
         <Output PropertyName="MachinePath" TaskParameter="Value" />
       </MSBuild.ExtensionPack.Computer.EnvironmentVariable>
-      <CombinePath BasePath="$(ROOT)" Paths="$(InstallDir)">
-        <Output PropertyName="FinalBinPath" TaskParameter="CombinedPaths" />
-      </CombinePath>
       <MSBuild.ExtensionPack.Framework.TextString TaskAction="Compare"
                                                   Comparison="Contains"
                                                   String1="$(MachinePath)"
