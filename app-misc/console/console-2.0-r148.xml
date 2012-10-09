@@ -3,7 +3,6 @@
   <Keywords>
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
-    <Keyword>~ia64</Keyword>
   </Keywords>
   <Sources size="3763234">
     <File digest="5167a73fc962eac4b0ef9f7958e8c847"
@@ -30,8 +29,8 @@
       </ItemGroup>
       <Copy SourceFiles="@(Files)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(L)\Console2.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\console.exe" />
+                                               Name="$(L)\Console2.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\console.exe" />
     </Target>
   </Project>
 </Port>

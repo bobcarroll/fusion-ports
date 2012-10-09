@@ -3,7 +3,6 @@
   <Keywords>
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
-    <Keyword>~ia64</Keyword>
   </Keywords>
   <Sources size="307200">
     <File digest="2d25e940211a53331dd23901fdb92b33"
@@ -26,8 +25,8 @@
                                         Overwrite="true" /> 
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\PuTTYtel.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\puttytel.exe" />
+                                               Name="$(StartMenu)\PuTTYtel.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\puttytel.exe" />
     </Target>
   </Project>
 </Port>

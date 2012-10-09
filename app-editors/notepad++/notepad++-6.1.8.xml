@@ -3,7 +3,6 @@
   <Keywords>
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
-    <Keyword>~ia64</Keyword>
   </Keywords>
   <Sources size="13674373">
     <File digest="098b065edbe3b0df2258684a703b704a"

@@ -3,7 +3,6 @@
   <Keywords>
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
-    <Keyword>~ia64</Keyword>
   </Keywords>
   <Sources size="9518545">
     <File digest="7bcdf6aac0c419609c1adf89260eb6be"
@@ -26,8 +25,8 @@
     </Target>
     <Target Name="src_install">
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(L)\WinSCP.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\winscp.exe" />
+                                               Name="$(L)\WinSCP.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\winscp.exe" />
     </Target>
   </Project>
 </Port>

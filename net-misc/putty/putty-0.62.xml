@@ -3,7 +3,6 @@
   <Keywords>
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
-    <Keyword>~ia64</Keyword>
   </Keywords>
   <Sources size="2885305">
     <File digest="c03c483eed422a9065c084856bcd3de0"
@@ -28,26 +27,26 @@
     <Target Name="src_install">
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\Pageant.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\PAGEANT.EXE" />
+                                               Name="$(StartMenu)\Pageant.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\PAGEANT.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\Plink.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\PLINK.EXE" />
+                                               Name="$(StartMenu)\Plink.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\PLINK.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\PSCP.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\PSCP.EXE" />
+                                               Name="$(StartMenu)\PSCP.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\PSCP.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\PSFTP.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\PSFTP.EXE" />
+                                               Name="$(StartMenu)\PSFTP.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\PSFTP.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)\PuTTY.lnk"
                                                FilePath="$(ROOT)\$(InstallDir)\PUTTY.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\PuTTYgen.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\PUTTYGEN.EXE" />
+                                               Name="$(StartMenu)\PuTTYgen.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\PUTTYGEN.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                         Name="$(StartMenu)\PuTTY Help.lnk"
-                                         FilePath="$(ROOT)\$(InstallDir)\PUTTY.CHM" />
+                                               Name="$(StartMenu)\PuTTY Help.lnk"
+                                               FilePath="$(ROOT)\$(InstallDir)\PUTTY.CHM" />
     </Target>
   </Project>
 </Port>
