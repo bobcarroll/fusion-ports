@@ -6,8 +6,8 @@
   </Keywords>
   <Sources size="8482">
     <File uri="https://github.com/downloads/rcarz/fusion/msitasks-2.0.zip"
-          digest="0bc13055c43e0b88a208871d9eb35498"
-          size="3936">$(P).zip</File>
+          digest="aac937821b905cca467ef0cd674f488e"
+          size="4067">$(P).zip</File>
   </Sources>
   <Dependencies>
     <Package atom="&gt;=dev-utils/wix-toolset-3.6" />
