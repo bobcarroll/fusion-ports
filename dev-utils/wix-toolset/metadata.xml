@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Builds Windows installation packages from XML source code.</Description>
+  <Homepage>http://wixtoolset.org/</Homepage>
+  <License>Microsoft Reciprocal License</License>
+</Package>
