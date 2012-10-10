@@ -4,7 +4,7 @@
     <Keyword>~x86</Keyword>
     <Keyword>~x86_64</Keyword>
   </Keywords>
-  <Sources size="0">
+  <Sources size="4674548">
     <File uri="http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7z920.msi"
           digest="9bd44a22bffe0e4e0b71b8b4cf3a80e2"
           size="1122816"

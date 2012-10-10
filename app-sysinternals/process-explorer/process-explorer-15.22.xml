@@ -5,9 +5,9 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="2770465">
-    <File digest="2a4a3c542f2c857983a5253042829552"
-          size="1144963"
-          uri="http://download.sysinternals.com/files/ProcessExplorer.zip">$(P).zip</File>
+    <File uri="http://download.sysinternals.com/files/ProcessExplorer.zip"
+          digest="2a4a3c542f2c857983a5253042829552"
+          size="1144963">$(P).zip</File>
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

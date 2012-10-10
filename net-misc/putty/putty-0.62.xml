@@ -5,9 +5,9 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="2885305">
-    <File digest="c03c483eed422a9065c084856bcd3de0"
-          size="1597060"
-          uri="http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip">$(P).zip</File>
+    <File uri="http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip"
+          digest="c03c483eed422a9065c084856bcd3de0"
+          size="1597060">$(P).zip</File>
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

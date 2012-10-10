@@ -5,9 +5,9 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="307200">
-    <File digest="2d25e940211a53331dd23901fdb92b33"
-          size="307200"
-          uri="http://the.earth.li/~sgtatham/putty/latest/x86/puttytel.exe">$(P).exe</File>
+    <File uri="http://the.earth.li/~sgtatham/putty/latest/x86/puttytel.exe"
+          digest="2d25e940211a53331dd23901fdb92b33"
+          size="307200">$(P).exe</File>
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

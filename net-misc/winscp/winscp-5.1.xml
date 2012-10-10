@@ -5,9 +5,9 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="9518545">
-    <File digest="7bcdf6aac0c419609c1adf89260eb6be"
-          size="3834608"
-          uri="http://downloads.sourceforge.net/project/winscp/WinSCP/5.1/winscp510.zip">$(P).zip</File>
+    <File uri="http://downloads.sourceforge.net/project/winscp/WinSCP/5.1/winscp510.zip"
+          digest="7bcdf6aac0c419609c1adf89260eb6be"
+          size="3834608">$(P).zip</File>
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
