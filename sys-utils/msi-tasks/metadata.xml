@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Provides Fusion tasks for dumping MSI installer data.</Description>
+  <Homepage>http://github.com/rcarz/</Homepage>
+  <License>GPLv2</License>
+</Package>
