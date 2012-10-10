@@ -27,11 +27,16 @@
     <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
     <Import Project="$(BINDIR)\msi.tasks" />
     <Target Name="src_unpack">
-      <Fusion.Tasks.MSI.Dump MsiPath="$(DISTDIR)\$(P).msi" TempDir="$(T)" CabFiles="true" />
+      <Fusion.Tasks.MSI.Dump MsiPath="$(DISTDIR)\$(P).msi"
+                             DumpDir="$(WORKDIR)"
+                             TempDir="$(T)"
+                             CabFiles="true" />
     </Target>
     <Target Name="pkg_preinst">
       <MakeDir Directories="$(D)\$(InstallDir)" />
-      <Fusion.Tasks.MSI.MakeImage Target="INSTALLDIR" TempDir="$(T)" ImageDir="$(D)\$(InstallDir)" />
+      <Fusion.Tasks.MSI.MakeImage Target="INSTALLDIR"
+                                  DumpDir="$(WORKDIR)"
+                                  ImageDir="$(D)\$(InstallDir)" />
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)\7-Zip File Manager.lnk"
