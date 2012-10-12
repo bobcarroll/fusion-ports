@@ -32,7 +32,7 @@
                              TempDir="$(T)"
                              CabFiles="true" />
     </Target>
-    <Target Name="pkg_preinst">
+    <Target Name="src_install">
       <MakeDir Directories="$(D)\$(InstallDir)" />
       <Fusion.Tasks.MSI.MakeImage Target="INSTALLDIR"
                                   DumpDir="$(WORKDIR)"
