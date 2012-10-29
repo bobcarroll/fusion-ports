@@ -5,7 +5,7 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="78014538">
-    <File uri="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=482066&amp;FileTime=129911654993200000&amp;Build=19430"
+    <File uri="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=482066&amp;FileTime=129911654993200000&amp;Build=19585"
           digest="a3f5cd1f354ffe1c05b88129664adaca"
           size="27307742">$(P).zip</File>
   </Sources>
