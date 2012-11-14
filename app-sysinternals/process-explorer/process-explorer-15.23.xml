@@ -5,7 +5,7 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="2791359">
-    <File uri="http://download.sysinternals.com/files/ProcessExplorer.zip"
+    <File uri="http://dl.dropbox.com/u/104631086/sysinternals/ProcessExplorer-15.23.zip"
           digest="9542319ceb0b4029a780049eacd1dfa3"
           size="1149822">$(P).zip</File>
   </Sources>
