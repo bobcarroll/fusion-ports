@@ -37,7 +37,7 @@
       <MakeDir Directories="$(D)\$(InstallDir)" />
       <ItemGroup>
         <Files Include="$(WORKDIR)\unicode\**\*" />
-	<Files Include="$(WORKDIR)\PowerEditor\bin\$(NppShellDll)" />
+        <Files Include="$(WORKDIR)\PowerEditor\bin\$(NppShellDll)" />
       </ItemGroup>
       <Copy SourceFiles="@(Files)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
