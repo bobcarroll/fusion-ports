@@ -6,22 +6,22 @@
   </Keywords>
   <Sources size="593622">
     <File uri="https://github.com/downloads/rcarz/fusion/7ziptasks-2.0.zip"
-          digest="e4f8503a54c75af1f5dfb13f6ef7b45e"
-          size="303690">$(P).zip</File>
+          digest="8060d14d362a0aa8d3118273ff8e0672"
+          size="304022">$(P).zip</File>
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Fusion</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Fusion</InstallDir>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Fusion\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Fusion\</InstallDir>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
-                                               ExtractPath="$(D)\$(InstallDir)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ExtractPath="$(D)$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
   </Project>
 </Port>

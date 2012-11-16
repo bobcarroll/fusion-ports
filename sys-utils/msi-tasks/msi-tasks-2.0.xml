@@ -4,35 +4,31 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="8482">
+  <Sources size="8994">
     <File uri="https://github.com/downloads/rcarz/fusion/msitasks-2.0.zip"
-          digest="9533fd54057ccd077d55464eb3b624b9"
-          size="4057">$(P).zip</File>
+          digest="4ac076f70956dd27d62c69bbfc11b825"
+          size="4409">$(P).zip</File>
   </Sources>
   <Dependencies>
     <Package atom="&gt;=dev-utils/wix-toolset-3.6" />
   </Dependencies>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Fusion</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Fusion</InstallDir>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Fusion\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Fusion\</InstallDir>
+	  <WixHome Condition="$(BITNESS) == '64'">$(ROOT)Program Files (x86)\WiX Toolset\</WixHome>
+      <WixHome Condition="$(BITNESS) == '32'">$(ROOT)Program Files\WiX Toolset\</WixHome>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
-                                               ExtractPath="$(D)\$(InstallDir)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ExtractPath="$(D)$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
     <Target Name="pkg_postinst">
-      <CombinePath BasePath="$(ROOT)" Paths="Program Files (x86)\WiX Toolset" Condition="$(BITNESS) == '64'">
-        <Output PropertyName="WixHome" TaskParameter="CombinedPaths" />
-      </CombinePath>
-      <CombinePath BasePath="$(ROOT)" Paths="Program Files\WiX Toolset" Condition="$(BITNESS) == '32'">
-        <Output PropertyName="WixHome" TaskParameter="CombinedPaths" />
-      </CombinePath>
       <MSBuild.ExtensionPack.Computer.EnvironmentVariable TaskAction="Set"
                                                           Variable="WIX_HOME"
                                                           Value="$(WixHome)"

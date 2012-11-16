@@ -11,26 +11,26 @@
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Console</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Console</InstallDir>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Console\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Console\</InstallDir>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
                                                ExtractPath="$(WORKDIR)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
     <Target Name="src_install">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <ItemGroup>
-        <Files Include="$(WORKDIR)\Console2\**\*" />
+        <Files Include="$(WORKDIR)Console2\**\*" />
       </ItemGroup>
-      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
+      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(L)\Console2.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\console.exe" />
+                                               Name="$(L)Console2.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)console.exe" />
     </Target>
   </Project>
 </Port>

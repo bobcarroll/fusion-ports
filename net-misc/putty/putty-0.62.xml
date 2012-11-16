@@ -11,42 +11,42 @@
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\PuTTY</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\PuTTY</InstallDir>
-      <StartMenu>$(L)\PuTTY</StartMenu>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\PuTTY\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\PuTTY\</InstallDir>
+      <StartMenu>$(L)\PuTTY\</StartMenu>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
       <MakeDir Directories="$(D)\$(InstallDir)" />
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
-                                               ExtractPath="$(D)\$(InstallDir)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ExtractPath="$(D)$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
     <Target Name="src_install">
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\Pageant.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PAGEANT.EXE" />
+                                               Name="$(StartMenu)Pageant.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PAGEANT.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\Plink.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PLINK.EXE" />
+                                               Name="$(StartMenu)Plink.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PLINK.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\PSCP.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PSCP.EXE" />
+                                               Name="$(StartMenu)PSCP.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PSCP.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\PSFTP.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PSFTP.EXE" />
+                                               Name="$(StartMenu)PSFTP.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PSFTP.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\PuTTY.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PUTTY.EXE" />
+                                               Name="$(StartMenu)PuTTY.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PUTTY.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\PuTTYgen.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PUTTYGEN.EXE" />
+                                               Name="$(StartMenu)PuTTYgen.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PUTTYGEN.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\PuTTY Help.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\PUTTY.CHM" />
+                                               Name="$(StartMenu)PuTTY Help.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)PUTTY.CHM" />
     </Target>
   </Project>
 </Port>

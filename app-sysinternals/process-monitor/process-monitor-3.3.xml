@@ -11,24 +11,24 @@
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\SysInternals\ProcessMonitor</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\SysInternals\ProcessMonitor</InstallDir>
-      <StartMenu>$(L)\SysInternals</StartMenu>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\SysInternals\ProcessMonitor\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\SysInternals\ProcessMonitor\</InstallDir>
+      <StartMenu>$(L)\SysInternals\</StartMenu>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
-                                               ExtractPath="$(D)\$(InstallDir)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ExtractPath="$(D)$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
     <Target Name="src_install">
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\Process Monitor.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\Procmon.exe" />
+                                               Name="$(StartMenu)Process Monitor.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)Procmon.exe" />
     </Target>
   </Project>
 </Port>

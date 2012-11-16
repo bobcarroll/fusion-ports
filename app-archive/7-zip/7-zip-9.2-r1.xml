@@ -19,36 +19,33 @@
   </Dependencies>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir>Program Files\7-Zip</InstallDir>
-      <StartMenu>$(L)\7-Zip</StartMenu>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir>Program Files\7-Zip\</InstallDir>
+      <StartMenu>$(L)\7-Zip\</StartMenu>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
-    <Import Project="$(BINDIR)\msi.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)msi.tasks" />
     <Target Name="src_unpack">
-      <Fusion.Tasks.MSI.Dump MsiPath="$(DISTDIR)\$(P).msi"
+      <Fusion.Tasks.MSI.Dump MsiPath="$(DISTDIR)$(P).msi"
                              DumpDir="$(WORKDIR)"
                              TempDir="$(T)"
                              CabFiles="true" />
     </Target>
     <Target Name="src_install">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <Fusion.Tasks.MSI.MakeImage Target="INSTALLDIR"
                                   DumpDir="$(WORKDIR)"
-                                  ImageDir="$(D)\$(InstallDir)" />
+                                  ImageDir="$(D)$(InstallDir)" />
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\7-Zip File Manager.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\7zFM.exe" />
+                                               Name="$(StartMenu)7-Zip File Manager.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)7zFM.exe" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(StartMenu)\7-Zip Help.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\7zip.chm" />
+                                               Name="$(StartMenu)7-Zip Help.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)7zip.chm" />
     </Target>
     <Target Name="pkg_postinst">
-      <CombinePath BasePath="$(ROOT)" Paths="$(InstallDir)">
-        <Output PropertyName="RealInstallDir" TaskParameter="CombinedPaths" />
-      </CombinePath>
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
                                                RegistryView="Registry64"
                                                RegistryHive="CurrentUser"
@@ -62,7 +59,7 @@
                                                RegistryHive="LocalMachine"
                                                Key="Software\7-Zip"
                                                Value="Path"
-                                               Data="$(RealInstallDir)" />
+                                               Data="$(ROOT)$(InstallDir)" />
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
                                                RegistryView="Registry64"
                                                RegistryHive="ClassesRoot"
@@ -113,13 +110,13 @@
                                                RegistryView="Registry64"
                                                RegistryHive="LocalMachine"
                                                Key="Software\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe"
-                                               Data="$(RealInstallDir)\7zFM.exe" />
+                                               Data="$(ROOT)$(InstallDir)7zFM.exe" />
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
                                                RegistryView="Registry64"
                                                RegistryHive="LocalMachine"
                                                Key="Software\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe"
                                                Value="Path"
-                                               Data="$(RealInstallDir)" />
+                                               Data="$(ROOT)$(InstallDir)" />
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
                                                RegistryView="Registry64"
                                                RegistryHive="ClassesRoot"
@@ -128,7 +125,7 @@
                                                RegistryView="Registry64"
                                                RegistryHive="ClassesRoot"
                                                Key="CLSID\{23170F69-40C1-278A-1000-000100020000}\InprocServer32"
-                                               Data="$(RealInstallDir)\7-zip.dll" />
+                                               Data="$(ROOT)$(InstallDir)7-zip.dll" />
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
                                                RegistryView="Registry64"
                                                RegistryHive="ClassesRoot"

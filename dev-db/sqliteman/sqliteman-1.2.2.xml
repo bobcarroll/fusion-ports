@@ -11,26 +11,26 @@
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Sqliteman</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Sqliteman</InstallDir>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Sqliteman\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Sqliteman\</InstallDir>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract"
                                                ExtractPath="$(WORKDIR)"
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
     <Target Name="src_install">
       <ItemGroup>
-        <PkgFiles Include="$(WORKDIR)\Sqliteman-1.2.2\**\*" />
+        <PkgFiles Include="$(WORKDIR)Sqliteman-1.2.2\**\*" />
       </ItemGroup>
-      <MakeDir Directories="$(D)\$(InstallDir)" />
-      <Copy SourceFiles="@(PkgFiles)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
+      <Copy SourceFiles="@(PkgFiles)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(L)\Sqliteman.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\sqliteman.exe" />
+                                               Name="$(L)Sqliteman.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)sqliteman.exe" />
     </Target>
   </Project>
 </Port>

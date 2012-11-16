@@ -11,17 +11,17 @@
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\WiX Toolset</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\WiX Toolset</InstallDir>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\WiX Toolset\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\WiX Toolset\</InstallDir>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
-                                               ExtractPath="$(D)\$(InstallDir)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
+                                               ExtractPath="$(D)$(InstallDir)" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
     </Target>
   </Project>
 </Port>

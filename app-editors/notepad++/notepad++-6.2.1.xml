@@ -17,44 +17,38 @@
   </Dependencies>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Notepad++</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Notepad++</InstallDir>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Notepad++\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Notepad++\</InstallDir>
       <NppShellDll Condition="$(BITNESS) == '64'">NppShell64.dll</NppShellDll>
       <NppShellDll Condition="$(BITNESS) == '32'">NppShell.dll</NppShellDll>
     </PropertyGroup>
-    <Import Project="$(BINDIR)\Fusion.tasks" />
-	<Import Project="$(BINDIR)\7zip.tasks" />
-    <Import Project="$(ExtensionTasksPath)\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)Fusion.tasks" />
+	<Import Project="$(BINDIR)7zip.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
       <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
                                                ExtractPath="$(WORKDIR)" 
-                                               ZipFileName="$(DISTDIR)\$(P).zip" />
-      <Fusion.Tasks.Compression.Extract Archive="$(DISTDIR)\$(P)-src.7z" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
+      <Fusion.Tasks.Compression.Extract Archive="$(DISTDIR)$(P)-src.7z" 
                                         Output="$(WORKDIR)" />
     </Target>
     <Target Name="src_install">
-      <MakeDir Directories="$(D)\$(InstallDir)" />
+      <MakeDir Directories="$(D)$(InstallDir)" />
       <ItemGroup>
-        <Files Include="$(WORKDIR)\unicode\**\*" />
-        <Files Include="$(WORKDIR)\PowerEditor\bin\$(NppShellDll)" />
+        <Files Include="$(WORKDIR)unicode\**\*" />
+        <Files Include="$(WORKDIR)PowerEditor\bin\$(NppShellDll)" />
       </ItemGroup>
-      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)\$(InstallDir)\%(RecursiveDir)" />
+      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
-                                               Name="$(L)\Notepad++.lnk"
-                                               FilePath="$(ROOT)\$(InstallDir)\notepad++.exe" />
+                                               Name="$(L)Notepad++.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)notepad++.exe" />
     </Target>
 	<Target Name="pkg_postinst">
-	  <CombinePath BasePath="$(ROOT)" Paths="$(InstallDir)">
-        <Output PropertyName="RealInstallDir" TaskParameter="CombinedPaths" />
-      </CombinePath>
-      <Exec Command="regsvr32 /s &quot;$(RealInstallDir)\$(NppShellDll)&quot;" />
+      <Exec Command="regsvr32 /s &quot;$(ROOT)$(InstallDir)$(NppShellDll)&quot;" />
     </Target>
 	<Target Name="pkg_prerm">
-	  <CombinePath BasePath="$(ROOT)" Paths="$(InstallDir)">
-        <Output PropertyName="RealInstallDir" TaskParameter="CombinedPaths" />
-      </CombinePath>
-      <Exec Command="regsvr32 /u /s &quot;$(RealInstallDir)\$(NppShellDll)&quot;" />
+      <Exec Command="regsvr32 /u /s &quot;$(ROOT)$(InstallDir)$(NppShellDll)&quot;" />
     </Target>
   </Project>
 </Port>
