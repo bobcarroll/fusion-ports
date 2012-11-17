@@ -28,24 +28,31 @@
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)Pageant.lnk"
+                                               Description="SSH authentication agent for PuTTY, PSCP, PSFTP, and Plink."
                                                FilePath="$(ROOT)$(InstallDir)PAGEANT.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)Plink.lnk"
+                                               Description="Command-line interface to the PuTTY back ends."
                                                FilePath="$(ROOT)$(InstallDir)PLINK.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)PSCP.lnk"
+                                               Description="SCP client, i.e. command-line secure file copy."
                                                FilePath="$(ROOT)$(InstallDir)PSCP.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)PSFTP.lnk"
+                                               Description="SFTP client, i.e. general file transfer sessions much like FTP."
                                                FilePath="$(ROOT)$(InstallDir)PSFTP.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)PuTTY.lnk"
+                                               Description="Telnet and SSH client."
                                                FilePath="$(ROOT)$(InstallDir)PUTTY.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)PuTTYgen.lnk"
+                                               Description="RSA and DSA key generation utility."
                                                FilePath="$(ROOT)$(InstallDir)PUTTYGEN.EXE" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)PuTTY Help.lnk"
+                                               Description="Learn about PuTTY and how to use it."
                                                FilePath="$(ROOT)$(InstallDir)PUTTY.CHM" />
     </Target>
   </Project>

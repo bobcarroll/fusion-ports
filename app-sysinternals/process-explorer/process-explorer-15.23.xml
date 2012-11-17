@@ -28,6 +28,7 @@
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)Process Explorer.lnk"
+                                               Description="Find out what files, registry keys and other objects processes have open, which DLLs they have loaded, and more."
                                                FilePath="$(ROOT)$(InstallDir)procexp.exe" />
     </Target>
   </Project>

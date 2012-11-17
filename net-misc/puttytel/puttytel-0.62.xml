@@ -26,6 +26,7 @@
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)PuTTYtel.lnk"
+                                               Description="PuTTY telnet client."
                                                FilePath="$(ROOT)$(InstallDir)puttytel.exe" />
     </Target>
   </Project>

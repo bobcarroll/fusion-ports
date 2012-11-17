@@ -37,14 +37,14 @@
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)Git Bash.lnk"
-                                               Description="Git Bash"
+                                               Description="Text-based (command line) interaction with the Git version control system."
                                                FilePath="$(CmdExe)"
                                                Arguments="/c &quot;&quot;$(ROOT)$(InstallDir)bin\sh.exe&quot; --login -i&quot;"
                                                WorkingDirectory="%USERPROFILE%"
                                                IconLocation="$(ROOT)$(InstallDir)etc\git.ico" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)Git GUI.lnk"
-                                               Description="Git GUI"
+                                               Description="Graphical interaction with the Git version control system."
                                                FilePath="$(ROOT)$(InstallDir)bin\wish.exe"
                                                Arguments="&quot;$(ROOT)$(InstallDir)libexec\git-core\git-gui&quot;"
                                                IconLocation="$(ROOT)$(InstallDir)etc\git.ico" />

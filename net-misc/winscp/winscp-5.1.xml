@@ -26,6 +26,7 @@
     <Target Name="src_install">
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(L)WinSCP.lnk"
+                                               Description="SFTP, SCP and FTP client for Windows."
                                                FilePath="$(ROOT)$(InstallDir)winscp.exe" />
     </Target>
   </Project>

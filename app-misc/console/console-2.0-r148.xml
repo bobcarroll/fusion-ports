@@ -30,6 +30,7 @@
       <Copy SourceFiles="@(Files)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(L)Console2.lnk"
+                                               Description="Console window enhancement featuring multiple tabs, etc."
                                                FilePath="$(ROOT)$(InstallDir)console.exe" />
     </Target>
   </Project>

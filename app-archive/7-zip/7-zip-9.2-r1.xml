@@ -40,10 +40,12 @@
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)7-Zip File Manager.lnk"
+                                               Description="File archiver with a high compression ratio."
                                                FilePath="$(ROOT)$(InstallDir)7zFM.exe" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)7-Zip Help.lnk"
-                                               FilePath="$(ROOT)$(InstallDir)7zip.chm" />
+                                               Description="Learn about 7-Zip and how to use it."
+                                               FilePath="$(ROOT)$(InstallDir)7-zip.chm" />
     </Target>
     <Target Name="pkg_postinst">
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"

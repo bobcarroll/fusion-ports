@@ -30,6 +30,7 @@
       <Copy SourceFiles="@(PkgFiles)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(L)Sqliteman.lnk"
+                                               Description="GUI tool for Sqlite3."
                                                FilePath="$(ROOT)$(InstallDir)sqliteman.exe" />
     </Target>
   </Project>

@@ -42,6 +42,7 @@
       <Copy SourceFiles="@(Files)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(L)Notepad++.lnk"
+                                               Description="Source code editor that supports several languages."
                                                FilePath="$(ROOT)$(InstallDir)notepad++.exe" />
     </Target>
 	<Target Name="pkg_postinst">
