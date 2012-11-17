@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+  </Keywords>
+  <Sources size="228834280">
+    <File uri="http://msysgit.googlecode.com/files/PortableGit-1.8.0-preview20121022.7z"
+          digest="857b38e42a75be3e9352d18f29a03c5d"
+          size="20855472">$(P).7z</File>
+  </Sources>
+  <Dependencies>
+    <Package atom="sys-utils/7zip-tasks" />
+  </Dependencies>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)\ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Git\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Git\</InstallDir>
+      <CmdExe Condition="$(BITNESS) == '64'">$(windir)\SysWOW64\cmd.exe</CmdExe>
+      <CmdExe Condition="$(BITNESS) == '32'">$(windir)\System32\cmd.exe</CmdExe>
+      <GitShellDll Condition="$(BITNESS) == '64'">git_shell_ext64.dll</GitShellDll>
+      <GitShellDll Condition="$(BITNESS) == '32'">git_shell_ext.dll</GitShellDll>
+      <System32Dir Condition="$(BITNESS) == '64'">SysWow64</System32Dir>
+      <System32Dir Condition="$(BITNESS) == '32'">System32</System32Dir>
+      <StartMenu>$(L)\Git\</StartMenu>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)Fusion.tasks" />
+	<Import Project="$(BINDIR)7zip.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MakeDir Directories="$(D)$(InstallDir)" />
+      <Fusion.Tasks.Compression.Extract Archive="$(DISTDIR)$(P).7z" 
+                                        Output="&quot;$(D)$(InstallDir)&quot;" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(StartMenu)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(StartMenu)Git Bash.lnk"
+                                               Description="Git Bash"
+                                               FilePath="$(CmdExe)"
+                                               Arguments="/c &quot;&quot;$(ROOT)$(InstallDir)bin\sh.exe&quot; --login -i&quot;"
+                                               IconLocation="$(ROOT)$(InstallDir)etc\git.ico" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(StartMenu)Git GUI.lnk"
+                                               Description="Git GUI"
+                                               FilePath="$(ROOT)$(InstallDir)bin\wish.exe"
+                                               Arguments="&quot;$(ROOT)$(InstallDir)libexec\git-core\git-gui&quot;"
+                                               IconLocation="$(ROOT)$(InstallDir)etc\git.ico" />
+    </Target>
+    <Target Name="pkg_postinst">
+      <Exec Command="regsvr32 /s &quot;$(ROOT)$(InstallDir)git-cheetah\$(GitShellDll)&quot;" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitattributes" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitattributes"
+                                               Data="txtfile" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitattributes"
+                                               Value="Content Type"
+                                               Data="text/plain" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitattributes"
+                                               Value="PerceivedType"
+                                               Data="text" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitignore" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitignore"
+                                               Data="txtfile" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitignore"
+                                               Value="Content Type"
+                                               Data="text/plain" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitignore"
+                                               Value="PerceivedType"
+                                               Data="text" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitmodules" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitmodules"
+                                               Data="txtfile" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitmodules"
+                                               Value="Content Type"
+                                               Data="text/plain" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitmodules"
+                                               Value="PerceivedType"
+                                               Data="text" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".sh" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".sh"
+                                               Data="sh_auto_file" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file"
+                                               Data="Shell Script" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file\DefaultIcon" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file\DefaultIcon"
+                                               Data="%SystemRoot%\$(System32Dir)\shell32.dll,-153" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file\shell\open\command" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file\shell\open\command"
+                                               Data="$(CmdExe) /C &quot;&quot;$(ROOT)$(InstallDir)bin\sh.exe&quot; &quot;--login&quot; &quot;%1&quot; %*&quot;" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file\ShellEx\DropHandler" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file\ShellEx\DropHandler"
+                                               Data="{86C86720-42A0-1069-A2E8-08002B30309D}" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved"
+                                               Value="{ca586c80-7c84-4b88-8537-726724df6929}"
+                                               Data="Git-Cheetah" />
+    </Target>
+    <Target Name="pkg_prerm">
+      <Exec Command="regsvr32 /u /s &quot;$(ROOT)$(InstallDir)git-cheetah\$(GitShellDll)&quot;" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitattributes" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitignore" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".gitmodules" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key=".sh" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="sh_auto_file" />
+      <Fusion.Tasks.Registry.DeleteValue RegistryView="Registry64"
+                                         RegistryHive="LocalMachine"
+                                         Key="Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved"
+                                         Value="{ca586c80-7c84-4b88-8537-726724df6929}" />
+    </Target>
+  </Project>
+</Port>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>A powerful version control system aiming to be the fastest decentralized source code management tool on this planet.</Description>
+  <Homepage>http://msysgit.github.com/</Homepage>
+  <License>GPLv2</License>
+</Package>

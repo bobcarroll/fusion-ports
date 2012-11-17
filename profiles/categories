@@ -4,6 +4,7 @@ app-misc
 app-sysinternals
 dev-db
 dev-utils
+dev-vcs
 net-misc
 sys-apps
 sys-utils
