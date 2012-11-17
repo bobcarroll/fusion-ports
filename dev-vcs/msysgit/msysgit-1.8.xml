@@ -40,6 +40,7 @@
                                                Description="Git Bash"
                                                FilePath="$(CmdExe)"
                                                Arguments="/c &quot;&quot;$(ROOT)$(InstallDir)bin\sh.exe&quot; --login -i&quot;"
+                                               WorkingDirectory="%USERPROFILE%"
                                                IconLocation="$(ROOT)$(InstallDir)etc\git.ico" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)Git GUI.lnk"
