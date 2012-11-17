@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>~x86</Keyword>
+    <Keyword>~x86_64</Keyword>
+  </Keywords>
+  <Sources size="4814080">
+    <File uri="http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.22/7z922.msi"
+          digest="c4217c54ee6e927478367a1a2797db05"
+          size="1150976"
+          cpuarch="x86">$(P).msi</File>
+    <File uri="http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.22/7z922-x64.msi"
+          digest="5670ad185cd6c7609046e436e6603aa5"
+          size="1444352"
+          cpuarch="amd64">$(P).msi</File>
+  </Sources>
+  <Dependencies>
+    <Package atom="&gt;=sys-utils/msi-tasks-2.0" />
+  </Dependencies>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir>Program Files\7-Zip\</InstallDir>
+      <StartMenu>$(L)\7-Zip\</StartMenu>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)Fusion.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(BINDIR)msi.tasks" />
+    <Target Name="src_unpack">
+      <Fusion.Tasks.MSI.Dump MsiPath="$(DISTDIR)$(P).msi"
+                             DumpDir="$(WORKDIR)"
+                             TempDir="$(T)"
+                             CabFiles="true" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(D)$(InstallDir)" />
+      <Fusion.Tasks.MSI.MakeImage Target="INSTALLDIR"
+                                  DumpDir="$(WORKDIR)"
+                                  ImageDir="$(D)$(InstallDir)" />
+      <MakeDir Directories="$(StartMenu)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(StartMenu)7-Zip File Manager.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)7zFM.exe" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(StartMenu)7-Zip Help.lnk"
+                                               FilePath="$(ROOT)$(InstallDir)7zip.chm" />
+    </Target>
+    <Target Name="pkg_postinst">
+      <Exec Command="regsvr32 /s &quot;$(ROOT)$(InstallDir)7-zip.dll&quot;" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="CurrentUser"
+                                               Key="Software\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\7-Zip"
+                                               Value="Path"
+                                               Data="$(ROOT)$(InstallDir)" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="*\shellex\ContextMenuHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="*\shellex\ContextMenuHandlers\7-Zip"
+                                               Data="{23170F69-40C1-278A-1000-000100020000}" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Directory\shellex\ContextMenuHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Directory\shellex\ContextMenuHandlers\7-Zip"
+                                               Data="{23170F69-40C1-278A-1000-000100020000}" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Directory\shellex\DragDropHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Directory\shellex\DragDropHandlers\7-Zip"
+                                               Data="{23170F69-40C1-278A-1000-000100020000}" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Drive\shellex\DragDropHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Drive\shellex\DragDropHandlers\7-Zip"
+                                               Data="{23170F69-40C1-278A-1000-000100020000}" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved"
+                                               Value="{23170F69-40C1-278A-1000-000100020000}"
+                                               Data="7-Zip Shell Extension" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe"
+                                               Data="$(ROOT)$(InstallDir)7zFM.exe" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe"
+                                               Value="Path"
+                                               Data="$(ROOT)$(InstallDir)" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="CLSID\{23170F69-40C1-278A-1000-000100020000}\InprocServer32" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="CLSID\{23170F69-40C1-278A-1000-000100020000}\InprocServer32"
+                                               Data="$(ROOT)$(InstallDir)7-zip.dll" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="Set"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="CLSID\{23170F69-40C1-278A-1000-000100020000}\InprocServer32"
+                                               Value="ThreadingModel"
+                                               Data="Apartment" />
+    </Target>
+    <Target Name="pkg_prerm">
+      <Exec Command="regsvr32 /u /s &quot;$(ROOT)$(InstallDir)7-zip.dll&quot;" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="CurrentUser"
+                                               Key="Software\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="*\shellex\ContextMenuHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Directory\shellex\ContextMenuHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Directory\shellex\DragDropHandlers\7-Zip" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="Drive\shellex\DragDropHandlers\7-Zip" />
+      <Fusion.Tasks.Registry.DeleteValue RegistryView="Registry64"
+                                         RegistryHive="LocalMachine"
+                                         Key="Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved"
+                                         Value="{23170F69-40C1-278A-1000-000100020000}" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKey"
+                                               RegistryView="Registry64"
+                                               RegistryHive="LocalMachine"
+                                               Key="Software\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe" />
+      <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
+                                               RegistryView="Registry64"
+                                               RegistryHive="ClassesRoot"
+                                               Key="CLSID\{23170F69-40C1-278A-1000-000100020000}" />
+    </Target>
+  </Project>
+</Port>

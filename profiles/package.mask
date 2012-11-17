@@ -1,0 +1,3 @@
+# 7-Zip alpha releases
+=app-archive/7-Zip-9.25
+=app-archive/7-Zip-9.30
