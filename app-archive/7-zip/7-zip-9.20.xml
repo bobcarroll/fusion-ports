@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Port api="1">
   <Keywords>
-    <Keyword>~x86</Keyword>
-    <Keyword>~x86_64</Keyword>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="4674548">
     <File uri="http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7z920.msi"
@@ -40,14 +40,13 @@
       <MakeDir Directories="$(StartMenu)" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)7-Zip File Manager.lnk"
-                                               Description="File archiver with a high compression ratio."
                                                FilePath="$(ROOT)$(InstallDir)7zFM.exe" />
       <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
                                                Name="$(StartMenu)7-Zip Help.lnk"
-                                               Description="Learn about 7-Zip and how to use it."
-                                               FilePath="$(ROOT)$(InstallDir)7-zip.chm" />
+                                               FilePath="$(ROOT)$(InstallDir)7zip.chm" />
     </Target>
     <Target Name="pkg_postinst">
+      <Exec Command="regsvr32 /s &quot;$(ROOT)$(InstallDir)7-zip.dll&quot;" />
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="CreateKey"
                                                RegistryView="Registry64"
                                                RegistryHive="CurrentUser"
@@ -135,7 +134,8 @@
                                                Value="ThreadingModel"
                                                Data="Apartment" />
     </Target>
-    <Target Name="pkg_postrm">
+    <Target Name="pkg_prerm">
+      <Exec Command="regsvr32 /u /s &quot;$(ROOT)$(InstallDir)7-zip.dll&quot;" />
       <MSBuild.ExtensionPack.Computer.Registry TaskAction="DeleteKeyTree"
                                                RegistryView="Registry64"
                                                RegistryHive="CurrentUser"
