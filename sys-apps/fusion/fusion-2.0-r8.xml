@@ -5,7 +5,7 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources size="7043107">
-    <File uri="https://github.com/downloads/rcarz/fusion/fusion-2.0-r7.zip"
+    <File uri="https://github.com/downloads/rcarz/fusion/fusion-2.0-r8.zip"
           digest="80de9f9621a4dfde2761fec6b17137b8"
           size="3129137">$(P).zip</File>
   </Sources>
