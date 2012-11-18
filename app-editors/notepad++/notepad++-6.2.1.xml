@@ -13,7 +13,7 @@
           size="4752974">$(P)-src.7z</File>
   </Sources>
   <Dependencies>
-    <Package atom="sys-utils/7zip-tasks" />
+    <Package atom="&gt;=sys-utils/7zip-tasks-2.0" />
   </Dependencies>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

@@ -10,7 +10,7 @@
           size="20855472">$(P).7z</File>
   </Sources>
   <Dependencies>
-    <Package atom="sys-utils/7zip-tasks" />
+    <Package atom="&gt;=sys-utils/7zip-tasks-2.0" />
   </Dependencies>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
@@ -26,7 +26,7 @@
       <StartMenu>$(L)\Git\</StartMenu>
     </PropertyGroup>
     <Import Project="$(BINDIR)Fusion.tasks" />
-	<Import Project="$(BINDIR)7zip.tasks" />
+    <Import Project="$(BINDIR)7zip.tasks" />
     <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
     <Target Name="src_unpack">
       <MakeDir Directories="$(D)$(InstallDir)" />
