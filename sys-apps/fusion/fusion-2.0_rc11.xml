@@ -6,8 +6,8 @@
   </Keywords>
   <Sources>
     <File uri="https://github.com/downloads/rcarz/fusion/fusion-2.0_rc11.zip"
-          digest="56cd1f8277d036c21389f001d868694e"
-          size="3124427" />
+          digest="8ba571bf272d458f67bd3f16c541c2d2"
+          size="3125130" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
