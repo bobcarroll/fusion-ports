@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="2545195">
+  <Sources>
     <File uri="http://dl.dropbox.com/u/104631086/sysinternals/ProcessMonitor-3.03.zip"
           digest="c3cb41dc4e5ab24cee6b9afcd4d8ed02"
-          size="1102128">$(P).zip</File>
+          size="1102128" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

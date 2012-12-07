@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="13674373">
+  <Sources>
     <File uri="http://download.tuxfamily.org/notepadplus/6.1.8/npp.6.1.8.bin.zip"
           digest="098b065edbe3b0df2258684a703b704a"
-          size="4698070">$(P).zip</File>
+          size="4698070" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

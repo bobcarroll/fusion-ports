@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="19339751">
+  <Sources>
     <File uri="http://downloads.sourceforge.net/project/sqliteman/sqliteman/1.2.2/Sqliteman-1.2.2-win32.zip"
           digest="a2c53941a3cff200e05e1dabccd24e84"
-          size="8362247">$(P).zip</File>
+          size="8362247" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

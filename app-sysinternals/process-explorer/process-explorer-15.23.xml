@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="2791359">
+  <Sources>
     <File uri="http://dl.dropbox.com/u/104631086/sysinternals/ProcessExplorer-15.23.zip"
           digest="9542319ceb0b4029a780049eacd1dfa3"
-          size="1149822">$(P).zip</File>
+          size="1149822" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

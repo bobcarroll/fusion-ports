@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="78014538">
+  <Sources>
     <File uri="http://dl.dropbox.com/u/104631086/wix-toolset/wix36-binaries.zip"
           digest="a3f5cd1f354ffe1c05b88129664adaca"
-          size="27307742">$(P).zip</File>
+          size="27307742" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

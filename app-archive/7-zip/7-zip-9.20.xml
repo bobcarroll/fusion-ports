@@ -4,15 +4,15 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="4674548">
+  <Sources>
     <File uri="http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7z920.msi"
           digest="9bd44a22bffe0e4e0b71b8b4cf3a80e2"
           size="1122816"
-          cpuarch="x86">$(P).msi</File>
+          cpuarch="x86" />
     <File uri="http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7z920-x64.msi"
           digest="cac92727c33bec0a79965c61bbb1c82f"
           size="1376768"
-          cpuarch="amd64">$(P).msi</File>
+          cpuarch="amd64" />
   </Sources>
   <Dependencies>
     <Package atom="&gt;=sys-utils/msi-tasks-2.0" />

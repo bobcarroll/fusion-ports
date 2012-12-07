@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="3763234">
+  <Sources>
     <File uri="http://downloads.sourceforge.net/project/console/console-devel/2.00/Console-2.00b148-Beta_32bit.zip"
           digest="5167a73fc962eac4b0ef9f7958e8c847"
-          size="1579454">$(P).zip</File>
+          size="1579454" />
   </Sources>
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>

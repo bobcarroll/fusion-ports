@@ -4,13 +4,14 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="14078349">
+  <Sources>
     <File uri="http://download.tuxfamily.org/notepadplus/6.2.1/npp.6.2.1.bin.zip"
           digest="e96dc15992cf6e7b1e3dc847848b6b78"
-          size="4752974">$(P).zip</File>
+          size="4752974" />
     <File uri="http://download.tuxfamily.org/notepadplus/6.2.1/npp.6.2.1.src.7z"
           digest="4f70e197b6ead5387c1795b9ff11af2d"
-          size="4752974">$(P)-src.7z</File>
+          size="4752974"
+          pkgname="notepad++-6.2.1-src.7z" />
   </Sources>
   <Dependencies>
     <Package atom="&gt;=sys-utils/7zip-tasks-2.0" />

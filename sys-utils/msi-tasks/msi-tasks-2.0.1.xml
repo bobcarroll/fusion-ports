@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="9506">
+  <Sources>
     <File uri="https://github.com/downloads/rcarz/fusion/msitasks-2.0.1.zip"
           digest="05db93dde71c6812ce63567f077a8a12"
-          size="4866">$(P).zip</File>
+          size="4866" />
   </Sources>
   <Dependencies>
     <Package atom="&gt;=dev-utils/wix-toolset-3.6" />

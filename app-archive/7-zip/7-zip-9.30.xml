@@ -4,15 +4,15 @@
     <Keyword>~x86</Keyword>
     <Keyword>~x86_64</Keyword>
   </Keywords>
-  <Sources size="4367038">
+  <Sources>
     <File uri="http://dl.7-zip.org/7z930.msi"
           digest="69ab7a1a351db0c1dcb2bcb02e47e748"
           size="1112576"
-          cpuarch="x86">$(P).msi</File>
+          cpuarch="x86" />
     <File uri="http://dl.7-zip.org/7z930-x64.msi"
           digest="c162ea07218f37783491cacfa7e8bf51"
           size="4401435"
-          cpuarch="amd64">$(P).msi</File>
+          cpuarch="amd64" />
   </Sources>
   <Dependencies>
     <Package atom="&gt;=sys-utils/msi-tasks-2.0" />

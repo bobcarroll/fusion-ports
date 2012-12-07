@@ -4,10 +4,10 @@
     <Keyword>x86</Keyword>
     <Keyword>x86_64</Keyword>
   </Keywords>
-  <Sources size="228834280">
+  <Sources>
     <File uri="http://msysgit.googlecode.com/files/PortableGit-1.8.0-preview20121022.7z"
           digest="857b38e42a75be3e9352d18f29a03c5d"
-          size="20855472">$(P).7z</File>
+          size="20855472" />
   </Sources>
   <Dependencies>
     <Package atom="&gt;=sys-utils/7zip-tasks-2.0" />
