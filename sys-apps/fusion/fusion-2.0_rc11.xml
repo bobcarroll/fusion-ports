@@ -5,7 +5,7 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources>
-    <File uri="https://github.com/downloads/rcarz/fusion/fusion-2.0_rc11.zip"
+    <File uri="http://dl.dropbox.com/u/104631086/fusion/fusion-2.0_rc11.zip"
           digest="8ba571bf272d458f67bd3f16c541c2d2"
           size="3125130" />
   </Sources>

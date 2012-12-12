@@ -5,7 +5,7 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources>
-    <File uri="https://github.com/downloads/rcarz/fusion/7ziptasks-2.0.zip"
+    <File uri="http://dl.dropbox.com/u/104631086/fusion/7ziptasks-2.0.zip"
           digest="8060d14d362a0aa8d3118273ff8e0672"
           size="304022" />
   </Sources>

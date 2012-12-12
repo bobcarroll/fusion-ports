@@ -5,7 +5,7 @@
     <Keyword>x86_64</Keyword>
   </Keywords>
   <Sources>
-    <File uri="https://github.com/downloads/rcarz/fusion/msitasks-2.0.zip"
+    <File uri="http://dl.dropbox.com/u/104631086/fusion/msitasks-2.0.zip"
           digest="4ac076f70956dd27d62c69bbfc11b825"
           size="4409" />
   </Sources>
