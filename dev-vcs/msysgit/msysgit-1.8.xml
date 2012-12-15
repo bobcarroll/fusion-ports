@@ -23,7 +23,7 @@
       <GitShellDll Condition="$(BITNESS) == '32'">git_shell_ext.dll</GitShellDll>
       <System32Dir Condition="$(BITNESS) == '64'">SysWow64</System32Dir>
       <System32Dir Condition="$(BITNESS) == '32'">System32</System32Dir>
-      <StartMenu>$(L)\Git\</StartMenu>
+      <StartMenu>$(L)Git\</StartMenu>
     </PropertyGroup>
     <Import Project="$(BINDIR)Fusion.tasks" />
     <Import Project="$(BINDIR)7zip.tasks" />

@@ -21,7 +21,7 @@
     <PropertyGroup>
       <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
       <InstallDir>Program Files\7-Zip\</InstallDir>
-      <StartMenu>$(L)\7-Zip\</StartMenu>
+      <StartMenu>$(L)7-Zip\</StartMenu>
     </PropertyGroup>
     <Import Project="$(BINDIR)Fusion.tasks" />
     <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />

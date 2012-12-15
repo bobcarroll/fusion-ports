@@ -14,7 +14,7 @@
       <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
       <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\SysInternals\ProcessExplorer\</InstallDir>
       <InstallDir Condition="$(BITNESS) == '32'">Program Files\SysInternals\ProcessExplorer\</InstallDir>
-      <StartMenu>$(L)\SysInternals\</StartMenu>
+      <StartMenu>$(L)SysInternals\</StartMenu>
     </PropertyGroup>
     <Import Project="$(BINDIR)Fusion.tasks" />
     <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
