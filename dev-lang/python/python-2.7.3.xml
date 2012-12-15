@@ -21,8 +21,7 @@
   <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
       <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
-      <InstallDir Condition="$(BITNESS) == '64'">Program Files\Python\2.7\</InstallDir>
-      <InstallDir Condition="$(BITNESS) == '32'">Program Files (x86)\Python\2.7\</InstallDir>
+      <InstallDir>Program Files\Python\2.7\</InstallDir>
       <StartMenu>$(L)Python 2.7\</StartMenu>
     </PropertyGroup>
     <Import Project="$(BINDIR)Fusion.tasks" />
