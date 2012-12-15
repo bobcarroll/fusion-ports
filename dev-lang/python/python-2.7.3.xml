@@ -11,7 +11,7 @@
           cpuarch="x86" />
     <File uri="http://python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi"
           digest="d11d4aeb7e5425bf28f28ab1c7452886"
-          size="1376768"
+          size="16420864"
           cpuarch="amd64" />
   </Sources>
   <Slot>1</Slot>
