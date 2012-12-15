@@ -2,5 +2,5 @@
 <Package>
   <Description>Provides Fusion tasks for dumping MSI installer data.</Description>
   <Homepage>http://github.com/rcarz/fusion</Homepage>
-  <License>GPLv2</License>
+  <License>GPL-2</License>
 </Package>

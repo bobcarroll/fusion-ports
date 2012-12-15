@@ -2,5 +2,5 @@
 <Package>
   <Description>Client program for the SSH, Telnet and Rlogin network protocols.</Description>
   <Homepage>http://www.chiark.greenend.org.uk/~sgtatham/putty/</Homepage>
-  <License>MIT license</License>
+  <License>MIT</License>
 </Package>

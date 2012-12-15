@@ -2,5 +2,5 @@
 <Package>
   <Description>Python is a general-purpose, interpreted high-level programming language emphasizing code readability.</Description>
   <Homepage>http://www.python.org/</Homepage>
-  <License>PSF</License>
+  <License>PSF-2</License>
 </Package>

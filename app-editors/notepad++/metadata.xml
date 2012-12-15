@@ -2,5 +2,5 @@
 <Package>
   <Description>Free source code editor and Notepad replacement that supports several languages.</Description>
   <Homepage>http://notepad-plus-plus.org/</Homepage>
-  <License>GPL</License>
+  <License>GPL-2</License>
 </Package>

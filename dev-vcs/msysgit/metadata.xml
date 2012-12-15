@@ -2,5 +2,5 @@
 <Package>
   <Description>A powerful version control system aiming to be the fastest decentralized source code management tool on this planet.</Description>
   <Homepage>http://msysgit.github.com/</Homepage>
-  <License>GPLv2</License>
+  <License>GPL-2</License>
 </Package>

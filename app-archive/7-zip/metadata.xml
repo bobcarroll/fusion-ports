@@ -2,5 +2,5 @@
 <Package>
   <Description>File archiver with a high compression ratio.</Description>
   <Homepage>http://www.7-zip.org/</Homepage>
-  <License>GPL</License>
+  <License>LGPL</License>
 </Package>

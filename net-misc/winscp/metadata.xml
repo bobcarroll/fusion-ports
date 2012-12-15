@@ -2,5 +2,5 @@
 <Package>
   <Description>Free SFTP, SCP and FTP client for Windows.</Description>
   <Homepage>http://winscp.net/</Homepage>
-  <License>GPLv3</License>
+  <License>GPL-3</License>
 </Package>

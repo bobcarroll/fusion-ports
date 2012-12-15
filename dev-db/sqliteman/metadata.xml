@@ -2,5 +2,5 @@
 <Package>
   <Description>GUI tool for Sqlite3.</Description>
   <Homepage>http://sqliteman.com/</Homepage>
-  <License>GPLv2</License>
+  <License>GPL-2</License>
 </Package>

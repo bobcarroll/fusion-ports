@@ -2,5 +2,5 @@
 <Package>
   <Description>Console window enhancement featuring multiple tabs, etc.</Description>
   <Homepage>http://sourceforge.net/projects/console/</Homepage>
-  <License>GPL</License>
+  <License>GPL-2</License>
 </Package>

@@ -2,5 +2,5 @@
 <Package>
   <Description>Provides Fusion tasks for extracting 7z, zip, tar, bz2, and gz archives.</Description>
   <Homepage>http://github.com/rcarz/fusion</Homepage>
-  <License>GPLv2</License>
+  <License>GPL-2</License>
 </Package>
