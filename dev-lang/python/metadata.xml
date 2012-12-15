@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Python is a general-purpose, interpreted high-level programming language emphasizing code readability.</Description>
+  <Homepage>http://www.python.org/</Homepage>
+  <License>PSF</License>
+</Package>
