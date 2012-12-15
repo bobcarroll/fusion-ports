@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Package>
+  <Description>Scripting language that is especially suited for web development and can be embedded into HTML.</Description>
+  <Homepage>http://www.php.net/</Homepage>
+  <License>PHP-3.01</License>
+</Package>
