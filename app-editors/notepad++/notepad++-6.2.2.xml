@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Port api="1">
+  <Keywords>
+    <Keyword>x86</Keyword>
+    <Keyword>x86_64</Keyword>
+  </Keywords>
+  <Sources>
+    <File uri="http://download.tuxfamily.org/notepadplus/6.2.2/npp.6.2.2.bin.zip"
+          digest="c67a9b1eead73c2d875fe9288bdfd34e"
+          size="4754054" />
+    <File uri="http://download.tuxfamily.org/notepadplus/6.2.2/npp.6.2.2.src.7z"
+          digest="bf8bd52b4977e8cf0603fb8ce6fd8727"
+          size="4041057"
+          pkgname="notepad++-6.2.2-src.7z" />
+  </Sources>
+  <Dependencies>
+    <Package atom="&gt;=sys-utils/7zip-tasks-2.0" />
+  </Dependencies>
+  <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ExtensionTasksPath>$(BINDIR)ExtensionPack\</ExtensionTasksPath>
+      <InstallDir Condition="$(BITNESS) == '64'">Program Files (x86)\Notepad++\</InstallDir>
+      <InstallDir Condition="$(BITNESS) == '32'">Program Files\Notepad++\</InstallDir>
+      <NppShellDll Condition="$(BITNESS) == '64'">NppShell64.dll</NppShellDll>
+      <NppShellDll Condition="$(BITNESS) == '32'">NppShell.dll</NppShellDll>
+    </PropertyGroup>
+    <Import Project="$(BINDIR)Fusion.tasks" />
+	<Import Project="$(BINDIR)7zip.tasks" />
+    <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks" />
+    <Target Name="src_unpack">
+      <MSBuild.ExtensionPack.Compression.DNZip TaskAction="Extract" 
+                                               ExtractPath="$(WORKDIR)" 
+                                               ZipFileName="$(DISTDIR)$(P).zip" />
+      <Fusion.Tasks.Compression.Extract Archive="$(DISTDIR)$(P)-src.7z" 
+                                        Output="$(WORKDIR)" />
+    </Target>
+    <Target Name="src_install">
+      <MakeDir Directories="$(D)$(InstallDir)" />
+      <ItemGroup>
+        <Files Include="$(WORKDIR)unicode\**\*" />
+        <Files Include="$(WORKDIR)PowerEditor\bin\$(NppShellDll)" />
+      </ItemGroup>
+      <Copy SourceFiles="@(Files)" DestinationFolder="$(D)$(InstallDir)%(RecursiveDir)" />
+      <MSBuild.ExtensionPack.Computer.WshShell TaskAction="CreateShortcut"
+                                               Name="$(L)Notepad++.lnk"
+                                               Description="Source code editor that supports several languages."
+                                               FilePath="$(ROOT)$(InstallDir)notepad++.exe" />
+    </Target>
+	<Target Name="pkg_postinst">
+      <Exec Command="regsvr32 /s &quot;$(ROOT)$(InstallDir)$(NppShellDll)&quot;" />
+    </Target>
+	<Target Name="pkg_prerm">
+      <Exec Command="regsvr32 /u /s &quot;$(ROOT)$(InstallDir)$(NppShellDll)&quot;" />
+    </Target>
+  </Project>
+</Port>
